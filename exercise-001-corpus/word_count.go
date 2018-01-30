@@ -41,14 +41,14 @@ func main() {
   }
   
   //analyze
-  var map_result map[string]int
-  map_result = corpus.Analyze(content)
-  var result corpus.ByFreq
-  result = corpus.MapToWordCount(map_result)
-  sort.Sort(result)
+  var map_frequencies map[string]int
+  map_frequencies = corpus.Analyze(content)
+  var frequencies corpus.ByFreq
+  frequencies = corpus.MapToWordCount(map_frequencies)
+  sort.Sort(frequencies)
  
   //display on stdout 
-  for _, freq := range result {
+  for _, freq := range frequencies {
     fmt.Println(freq)
   }
  
