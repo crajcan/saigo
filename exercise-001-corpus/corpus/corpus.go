@@ -32,5 +32,38 @@ func count(word string, result map[string]int) {
 }
 
 
+type wordCount struct{
+  word string
+  count int
+}
+
+
+func MapToWordCount(countMap map[string]int) []wordCount {
+  var result []wordCount
+  for word, count := range countMap {
+    result = append(result, wordCount{word, count})
+  }
+  return result
+}
+
+
+type ByFreq []wordCount
+
+func (this ByFreq) Len() int {
+  return len(this)
+}
+
+func (this ByFreq) Less(i, j int) bool {
+  if (this[i].count == this[j].count) {
+    return (this[i].word < this[j].word)
+  } else { 
+    return (this[i].count > this[j].count)     
+  }
+}
+
+func (this ByFreq) Swap(i, j int) {
+  this[i], this[j] = this[j], this[i]
+}
+
 
 

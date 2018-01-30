@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
   "os"
-//	"sort"
-//	"strings"
+  "github.com/crajcan/saigo/exercise-001-corpus/corpus"
+  "sort"
 )
 
 
@@ -13,7 +13,7 @@ func main() {
 
    //get filename
   filename := os.Args[1] 
-  if filename == nil {
+  if filename == "" {
     fmt.Println("Please enter a filename")
     return
   }
@@ -27,7 +27,7 @@ func main() {
   defer file.Close()
 
   //get file size
-  stat, err := fileStat()
+  stat, err := file.Stat()
   if err != nil {
     return
   }
@@ -41,8 +41,15 @@ func main() {
   }
   
   //analyze
-  var result map[string]int
-  result := Analyze(content)   
-  fmt.Println(result)
+  var map_result map[string]int
+  map_result = corpus.Analyze(content)
+  var result corpus.ByFreq
+  result = corpus.MapToWordCount(map_result)
+  sort.Sort(result)
+ 
+  //display on stdout 
+  for _, freq := range result {
+    fmt.Println(freq)
+  }
  
 }
