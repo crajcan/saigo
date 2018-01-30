@@ -1,0 +1,58 @@
+package corpus
+
+import "testing"
+
+type testpair struct{
+  source string
+  freqInfos []freqinfo
+}
+
+
+var tests = []testpair{
+  { "The quick brown fox", 
+    []freqInfo{
+      {1, "the"},
+      {1, "quick"},
+      {1, "brown"},
+      {1, "fox"},
+    } },
+  { "Test Test spec Test Test",
+    []freqInfo{
+      {4, "test"},
+      {1, "spec"},
+    } },
+   { "Test test spec tEst tesT",
+    []freqInfo{
+      {4, "test"},
+      {1, "spec"},
+    } },
+   { "Test",
+    []freqInfo{
+     {1, "test"},
+     } }
+}
+
+func TestCountWordFreq(t *testing.T){
+  for _, pair := range tests{
+    v: = CountWordFreq(pair.source)
+    for i, word_count := range pair.freqInfos {
+      if (word_count.count != v[i].freq) {
+        t.Error(
+          "For word_count", i,
+          "expected", word_count.count,
+          "got", v[i].count,  
+        )
+      }
+      if (word_count.word != v[i].word) {
+        t.Error(
+          "For word_count", i,
+          "expected", word_count.word,
+          "got", v[i].word,    
+        )      
+      }
+    }
+  }
+}
+
+
+
