@@ -1,41 +1,45 @@
 package corpus
 
-import (//"fmt"
-        //"sort"
-        "strings"
+import ("strings"
         "unicode"
 )
 
 
+//Populate map with (word, frequency) pairs from input text
 func Analyze(content []byte) map[string]int{
-  result := make(map[string]int)
+  freqs := make(map[string]int)
   current_word := ""
   for _, character := range content {
     if unicode.IsLetter(rune(character)) {
       current_word += strings.ToLower(string(character))
     } else {
-      count(current_word, result)
+      count(current_word, freqs)
       current_word = ""
     }
   }
-  count(current_word, result)
-  return result
+  count(current_word, freqs)
+  return freqs
 }
 
-func count(word string, result map[string]int) {
+
+//helper for Analyze
+func count(word string, freqs map[string]int) {
   if (word == "") { return }
-  if _, ok := result[word]; ok {
-    result[word]++   
+  if _, ok := freqs[word]; ok {
+    freqs[word]++   
   } else {
-    result[word] = 1    
+    freqs[word] = 1    
   }
 }
 
+//Change map to array of structs to make use of sorting
 
 type wordCount struct{
   word string
   count int
 }
+
+type FreqArr []wordCount
 
 
 func MapToWordCount(countMap map[string]int) []wordCount {
@@ -47,13 +51,15 @@ func MapToWordCount(countMap map[string]int) []wordCount {
 }
 
 
-type ByFreq []wordCount
+//Implement sorting inteface
 
-func (this ByFreq) Len() int {
+
+func (this FreqArr) Len() int {
   return len(this)
 }
 
-func (this ByFreq) Less(i, j int) bool {
+
+func (this FreqArr) Less(i, j int) bool {
   if (this[i].count == this[j].count) {
     return (this[i].word < this[j].word)
   } else { 
@@ -61,7 +67,7 @@ func (this ByFreq) Less(i, j int) bool {
   }
 }
 
-func (this ByFreq) Swap(i, j int) {
+func (this FreqArr) Swap(i, j int) {
   this[i], this[j] = this[j], this[i]
 }
 

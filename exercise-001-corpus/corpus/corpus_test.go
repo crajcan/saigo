@@ -101,7 +101,7 @@ func TestCountWordFreq(t *testing.T){
 
 type toWordTestPair struct{
   mp map[string]int
-  arr []wordCount
+  spec []wordCount
 }
 
 var toWordTests = []toWordTestPair{
@@ -155,12 +155,12 @@ var toWordTests = []toWordTestPair{
 func TestMapToWordCount(t *testing.T){
   for i, pair := range toWordTests {
     newarr := MapToWordCount(pair.mp)
-    sort.Sort(ByFreq(newarr))
-    for j, count := range newarr {
-      if (count != pair.arr[j]) {
+    sort.Sort(FreqArr(newarr))
+    for j, word_count := range newarr {
+      if (word_count != pair.spec[j]) {
         t.Error(
           "For count", i,j,
-          "expected ", pair.arr[j],
+          "expected ", pair.spec[j],
           "got", count,
         )       
       } 

@@ -43,7 +43,7 @@ func main() {
   //analyze
   var map_frequencies map[string]int
   map_frequencies = corpus.Analyze(content)
-  var frequencies corpus.ByFreq
+  var frequencies corpus.FreqArr
   frequencies = corpus.MapToWordCount(map_frequencies)
   sort.Sort(frequencies)
  
