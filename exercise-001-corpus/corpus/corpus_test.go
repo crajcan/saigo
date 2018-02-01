@@ -47,7 +47,7 @@ var countTests = []testpair{
     }, 
   },
 
-  { []byte("?The quick.brown fox!"), 
+  { []byte("The quick. brown fox!"), 
     map[string]int{
       "the": 1,
       "quick": 1,
@@ -81,6 +81,30 @@ var countTests = []testpair{
     },
   },
 
+  { []byte("string with 1,000"), 
+    map[string]int{
+      "1,000": 1,
+      "string": 1,
+      "with": 1,
+    },
+  }, 
+
+  { []byte("string with 1,000."), 
+    map[string]int{
+      "1,000": 1,
+      "string": 1,
+      "with": 1,
+    },
+  },
+
+  { []byte("string with 1,000, cool"), 
+    map[string]int{
+      "1,000": 1,
+      "cool": 1,
+      "string": 1,
+      "with": 1,
+    },
+  },
 }
 
 func TestCountWordFreq(t *testing.T){

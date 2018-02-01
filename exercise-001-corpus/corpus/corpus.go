@@ -9,8 +9,8 @@ import ("strings"
 func Analyze(content []byte) map[string]int{
   freqs := make(map[string]int)
   current_word := ""
-  for _, character := range content {
-    if unicode.IsLetter(rune(character)) {
+  for i, character := range content {
+    if isAlphanumeric(character) || isPartOfNumeral(i, character, content) {
       current_word += strings.ToLower(string(character))
     } else {
       count(current_word, freqs)
@@ -32,6 +32,23 @@ func count(word string, freqs map[string]int) {
   }
 }
 
+func isAlphanumeric(character byte) bool {
+  return ((unicode.IsLetter(rune(character))) || (unicode.IsDigit(rune(character))))
+}
+
+func nextAlphanumeric(i int, content []byte) bool {
+  return (((i+1) < len(content)) && isAlphanumeric(content[i+1]))
+}
+
+func isSeparator(character byte) bool {
+  return (character == 46 || character == 44)
+}
+
+func isPartOfNumeral(i int, character byte, content []byte) bool {
+  return (isSeparator(character) && nextAlphanumeric(i, content)) 
+}
+
+
 //Change map to array of structs to make use of sorting
 
 type wordCount struct{
@@ -51,7 +68,7 @@ func MapToWordCount(countMap map[string]int) []wordCount {
 }
 
 
-//Implement sorting inteface
+//Implement sorting interface
 
 
 func (this FreqArr) Len() int {
