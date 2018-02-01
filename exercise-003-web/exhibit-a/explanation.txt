@@ -1,0 +1,4 @@
+    Hello is a function that takes in a Response Writer (an interface for constructing an http response). And an
+http request. When called (whenver a request to '/' is made), adds the text "Just wanted to say hi!" to the 
+request and returns. 
+

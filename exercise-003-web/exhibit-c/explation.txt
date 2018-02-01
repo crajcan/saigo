@@ -1,0 +1,1 @@
+This server works the same as the one from exhibit c, except it embeds some local go variables into the html. 

@@ -1,0 +1,3 @@
+    This server services two pages, the first is a form creted by a template. When the form is filled out, it 
+sends a request that contains form data parsable by ParseForm(). After the form data is parsed, signup can access
+it and use it in its response.

@@ -1,0 +1,2 @@
+    This server binds home as the handler of '/home' just as the basic one did for '/'. Home takes in a request 
+and a ResponseWriter as however it users template.Must to safely parse a template from home.html (It panics if there is n error). Hello executes the template, sending the response to w. 

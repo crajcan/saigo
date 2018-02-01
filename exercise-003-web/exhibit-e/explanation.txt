@@ -1,0 +1,1 @@
+    This server does the same thing as the server from exhibit-b, however it shows that by using a setup method and building a path, we can use different templates for different routes.
