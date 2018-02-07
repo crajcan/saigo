@@ -45,6 +45,27 @@ func (c *Circle) Area() float64 {
 	return math.Pi * c.radius * c.radius
 }
 
+//////////////
+// Triangle //
+//////////////
+
+type RightTriangle struct{
+  Leg1 float64
+  Leg2 float64 
+}
+
+func (t *RightTriangle) Name() string{
+  return "Right Triangle"
+}
+
+func (t *RightTriangle) Perimeter() float64{
+  return t.Leg1 + t.Leg2 + math.Sqrt(t.Leg1 * t.Leg1 + t.Leg2 * t.Leg2)
+}
+
+func (t *RightTriangle) Area() float64{
+  return (t.Leg1 * t.Leg2) / 2.0  
+}
+
 ////////////////
 // Efficiency //
 ////////////////
@@ -65,6 +86,13 @@ func Efficiency(s Shape) {
 }
 
 func main() {
+
+  t := RightTriangle{
+    Leg1: 10.0,
+    Leg2: 10.0,
+  } 
+  Efficiency(&t) 
+  
 	s := Square{side: 10.0}
 	Efficiency(&s)
 

@@ -1,0 +1,3 @@
+In exhibit A, we define a square type with a float measure of side length. We then define three
+ functions to detail the name, perimeter and area of a square. In efficiency we call those three 
+functions to get the name, area, and perim`eter of our given square. Then we use those values to calculate the efficiency of the shape and print a string detailing our findings.  

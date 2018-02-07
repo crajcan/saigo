@@ -1,0 +1,4 @@
+    This file does the same as exhibit-a except it defines the shape interface as a type that has
+the functions Name(), Perimeter(), and Area(). With this interface defined, we can now use any
+ shape as the argument to the Efficiency() function, then calculate and print the efficiency of 
+any shape using the same method.

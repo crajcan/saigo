@@ -1,0 +1,5 @@
+    This file implements a second instance of the Shape interface, 'Circle'. It defines the same 
+three methods required of any Shape, Name(), Perimeter(), and Area(). Because it has these three 
+methods, and Efficiency has been implemented to be agnostic of the Shape's type, as long as it con-
+forms to the restrictions of Shape, we can use Efficiency() to operate on Circles without making
+any changes to the code. 

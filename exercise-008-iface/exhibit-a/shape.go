@@ -38,6 +38,7 @@ func Efficiency(s *Square) {
 }
 
 func main() {
-	s := Square{side: 10.0}
+	s := Square{side: 1000.0}
+  fmt.Println("side length: ", s.side)
 	Efficiency(&s)
 }
