@@ -1,0 +1,6 @@
+We import the format and json encoding packages.
+
+We define a type 'Element' which is a struct containing strings, ints and floats.
+
+In main we create an 'Element' and then call JSON.MarshalIndent on it. This returns a json 
+as a []byte with appropiate indentation.

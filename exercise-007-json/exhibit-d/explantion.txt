@@ -1,0 +1,1 @@
+This file is a server that begins by reading and unmarshaling a json file just as the one in exhibit-c did. After it stores the data in allphones, a server starts with one handler that is set to write the allphones object when requests come in. 

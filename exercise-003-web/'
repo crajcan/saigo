@@ -1,0 +1,49 @@
+package main
+
+import (
+  "html/template"
+  "net/http"
+  "fmt"
+)
+
+var signups = map[string]int{}
+var c chan string = make (chan string)
+
+var homeT = template.Must(template.ParseFiles("my_server/home.html"))
+
+func home(w http.ResponseWriter, r *http.Request) {
+  r.ParseForm()
+  username := r.Form.Get("username")
+  fmt.Println("Parsed username: ", username)
+
+  c <- username
+  fmt.Println("sent username: ", username)
+
+  homeT.Execute(w, &signups)
+}
+func count(c <-chan string) {
+  for {
+    username := <- c
+    fmt.Println("count received username: ", username)
+    if (username != "") { 
+      if _, ok := signups[usernamne]; ok {
+        signups[username]++
+      } else {
+        signups[username] = 1
+      }
+    }
+  }
+}
+
+func main() {
+  //bind handler
+  http.HandleFunc("/", home)
+
+  //create channel & store
+
+  go counter(c)
+
+  //start server
+  fmt.Println("Server listening on port 8080")
+  http.ListenAndServe(":8080", nil)
+}

@@ -1,0 +1,2 @@
+This file is virtually the same as the one from exhibit A, only this one includes optional tags that let you 
+give an alternate name to your json fields, different from the ones in your go struct.
